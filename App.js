@@ -1,10 +1,10 @@
-import 'react-native-gesture-handler';  // Esta importación debe ser la primera
+import 'react-native-gesture-handler';  // Debe ser la primera importación
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import { View, Text, Button, StyleSheet, Image } from 'react-native';
 
-// Importa tus pantallas
+// Pantallas de la aplicación
 import HomeScreen from './screens/HomeScreen';
 import GrowthScreen from './screens/GrowthScreen';
 import MomentsScreen from './screens/MomentsScreen';

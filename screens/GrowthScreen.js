@@ -1,43 +1,52 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, FlatList } from 'react-native';
 
 const GrowthScreen = () => {
+  const [growthData, setGrowthData] = useState([]);
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
-  const [records, setRecords] = useState([]);
 
-  const handleAddRecord = () => {
-    setRecords([...records, { weight, height, date: new Date().toLocaleString() }]);
-    setWeight('');
-    setHeight('');
+  const handleAddGrowth = () => {
+    if (weight && height) {
+      setGrowthData([
+        ...growthData,
+        { id: Date.now().toString(), weight, height },
+      ]);
+      setWeight('');
+      setHeight('');
+    }
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>Registro de Crecimiento</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Crecimiento del bebé</Text>
       <TextInput
         style={styles.input}
-        placeholder="Peso (kg)"
-        keyboardType="numeric"
+        placeholder="Peso"
         value={weight}
         onChangeText={setWeight}
+        keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
-        placeholder="Altura (cm)"
-        keyboardType="numeric"
+        placeholder="Altura"
         value={height}
         onChangeText={setHeight}
+        keyboardType="numeric"
       />
-      <Button title="Agregar Registro" onPress={handleAddRecord} />
-      {records.map((record, index) => (
-        <View key={index} style={styles.record}>
-          <Text>{`Fecha: ${record.date}`}</Text>
-          <Text>{`Peso: ${record.weight} kg`}</Text>
-          <Text>{`Altura: ${record.height} cm`}</Text>
-        </View>
-      ))}
-    </ScrollView>
+      <Button title="Registrar Crecimiento" onPress={handleAddGrowth} />
+      
+      <FlatList
+        data={growthData}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.item}>
+            <Text>Peso: {item.weight} kg</Text>
+            <Text>Altura: {item.height} cm</Text>
+          </View>
+        )}
+      />
+    </View>
   );
 };
 
@@ -45,6 +54,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: '#F9F9F9',
   },
   title: {
     fontSize: 24,
@@ -55,13 +65,15 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: '#ccc',
     borderWidth: 1,
-    marginBottom: 20,
+    marginBottom: 15,
     paddingLeft: 10,
+    borderRadius: 5,
   },
-  record: {
-    backgroundColor: '#f4f4f4',
-    padding: 10,
-    marginBottom: 10,
+  item: {
+    marginVertical: 10,
+    padding: 15,
+    borderColor: '#ccc',
+    borderWidth: 1,
     borderRadius: 5,
   },
 });

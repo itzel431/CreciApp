@@ -4,8 +4,8 @@ import { View, Text, StyleSheet } from 'react-native';
 const HealthScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Pantalla de Salud</Text>
-      {/* Aquí puedes agregar contenido relacionado con la salud */}
+      <Text style={styles.title}>Salud del Bebé</Text>
+      <Text>Aquí van los registros de salud.</Text>
     </View>
   );
 };
@@ -13,14 +13,13 @@ const HealthScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F8E1F4',
+    padding: 20,
+    backgroundColor: '#F9F9F9',
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#D065A0',
+    marginBottom: 20,
+    textAlign: 'center',
   },
 });
 

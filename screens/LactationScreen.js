@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
 const LactationScreen = () => {
-  const [time, setTime] = useState(0);
-  const [timer, setTimer] = useState(null);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [timer, setTimer] = useState(0);
 
-  const startTimer = () => {
-    setTimer(setInterval(() => setTime((prevTime) => prevTime + 1), 1000));
-  };
-
-  const stopTimer = () => {
-    clearInterval(timer);
-  };
+  useEffect(() => {
+    let interval;
+    if (isTimerRunning) {
+      interval = setInterval(() => setTimer((prev) => prev + 1), 1000);
+    } else {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isTimerRunning]);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Cronómetro de Lactancia</Text>
-      <Text style={styles.time}>{time} segundos</Text>
-      <Button title="Iniciar" onPress={startTimer} />
-      <Button title="Detener" onPress={stopTimer} />
+      <Text style={styles.header}>Lactancia</Text>
+      <Text style={styles.timer}>{timer}s</Text>
+      <Button
+        title={isTimerRunning ? "Detener" : "Iniciar"}
+        onPress={() => setIsTimerRunning(!isTimerRunning)}
+      />
     </View>
   );
 };
@@ -26,16 +30,19 @@ const LactationScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#f5f5f5',
   },
-  title: {
+  header: {
     fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 20,
+    color: '#ff1493', // Rosa
   },
-  time: {
-    fontSize: 36,
+  timer: {
+    fontSize: 48,
+    fontWeight: 'bold',
     marginBottom: 20,
   },
 });

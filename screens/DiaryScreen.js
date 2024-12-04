@@ -1,55 +1,79 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
 
-export default function DiaryScreen() {
-  const [notes, setNotes] = useState([]);
-  const [note, setNote] = useState('');
+const DiaryScreen = () => {
+  const [entry, setEntry] = useState('');
+  const [entries, setEntries] = useState([]);
 
-  const addNote = () => {
-    const newNote = { note, date: new Date().toLocaleString(), id: Math.random().toString() };
-    setNotes(prevNotes => [...prevNotes, newNote]);
-    setNote('');
+  const addEntry = () => {
+    if (entry.trim() !== '') {
+      const timestamp = new Date().toLocaleString();
+      setEntries([...entries, { entry, timestamp }]);
+      setEntry('');
+    }
   };
 
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Mi Diario</Text>
       <TextInput
         style={styles.input}
-        placeholder="Escribe tu nota"
-        value={note}
-        onChangeText={setNote}
+        placeholder="Escribe algo..."
+        value={entry}
+        onChangeText={setEntry}
+        multiline
       />
-      <Button title="Guardar Nota" onPress={addNote} />
-      <FlatList
-        data={notes}
-        renderItem={({ item }) => (
-          <View style={styles.note}>
-            <Text>{item.date}</Text>
-            <Text>{item.note}</Text>
+      <Button title="Añadir Entrada" onPress={addEntry} />
+      <ScrollView style={styles.listContainer}>
+        {entries.map((item, index) => (
+          <View key={index} style={styles.entry}>
+            <Text style={styles.timestamp}>{item.timestamp}</Text>
+            <Text style={styles.text}>{item.entry}</Text>
           </View>
-        )}
-        keyExtractor={item => item.id}
-      />
+        ))}
+      </ScrollView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    justifyContent: 'center',
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 20,
   },
   input: {
-    height: 40,
-    borderColor: '#ccc',
+    height: 100,
+    borderColor: 'gray',
     borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
-  note: {
-    marginTop: 10,
-    padding: 10,
-    backgroundColor: '#f8f8f8',
+    marginBottom: 20,
+    paddingLeft: 10,
+    paddingTop: 10,
     borderRadius: 5,
   },
+  listContainer: {
+    marginTop: 20,
+  },
+  entry: {
+    marginBottom: 20,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'lightgray',
+    borderRadius: 5,
+  },
+  timestamp: {
+    fontSize: 12,
+    color: 'gray',
+  },
+  text: {
+    fontSize: 16,
+  },
 });
+
+export default DiaryScreen;
