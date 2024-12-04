@@ -1,46 +1,24 @@
-import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
+import GrowthScreen from './screens/GrowthScreen';
+import DiaryScreen from './screens/DiaryScreen';
+import LactationScreen from './screens/LactationScreen';
 
-export default function App() {
-  const [isStarted, setIsStarted] = useState(false);
+const Stack = createStackNavigator();
 
+function App() {
   return (
-    <View style={styles.container}>
-      {!isStarted ? (
-        <>
-          <Image
-            source={require('./assets/logo.png')}
-            style={styles.logo}
-          />
-          <Text style={styles.slogan}>Acompañándote en el arte de ser mamá</Text>
-          <Button
-            title="Comenzar"
-            onPress={() => setIsStarted(true)}
-          />
-        </>
-      ) : (
-        <HomeScreen />
-      )}
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="HomeScreen">
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="GrowthScreen" component={GrowthScreen} />
+        <Stack.Screen name="DiaryScreen" component={DiaryScreen} />
+        <Stack.Screen name="LactationScreen" component={LactationScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F1C6D3',
-  },
-  logo: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
-  },
-  slogan: {
-    fontSize: 18,
-    color: '#333',
-    marginBottom: 20,
-  },
-});
+export default App;

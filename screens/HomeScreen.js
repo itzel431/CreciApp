@@ -1,10 +1,7 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Si usas navegación
 
-const HomeScreen = () => {
-  const navigation = useNavigation();
-
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Bienvenida a Creci</Text>
@@ -20,10 +17,6 @@ const HomeScreen = () => {
       <Button
         title="Lactancia"
         onPress={() => navigation.navigate('LactationScreen')}
-      />
-      <Button
-        title="Momentos"
-        onPress={() => navigation.navigate('MomentsScreen')}
       />
     </View>
   );
