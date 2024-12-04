@@ -5,14 +5,13 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image 
-        source={require('../assets/logo.png')} // Asegúrate de tener el logo en la carpeta 'assets'
-        style={styles.logo} 
+        source={require('./assets/logo.png')}  // Cambia esto al logo que tienes en tu proyecto
+        style={styles.logo}
       />
       <Text style={styles.slogan}>Acompañándote en el arte de ser mamá</Text>
       <Button
         title="Comenzar"
-        onPress={() => navigation.navigate('Growth')} // Navegar a GrowthScreen
-        color="#FF69B4"
+        onPress={() => navigation.navigate('Growth')}
       />
     </View>
   );
@@ -23,21 +22,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F1C6D3',
-    padding: 20,
+    backgroundColor: '#F0C1D1',  // Color de fondo
   },
   logo: {
-    width: 200,
-    height: 200,
+    width: 150,
+    height: 150,
     marginBottom: 20,
   },
   slogan: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginBottom: 20,
-    textAlign: 'center',
-    color: '#333',
-  }
+    fontWeight: 'bold',
+    color: '#8A2BE2',  // Color del texto
+  },
 });
 
 export default HomeScreen;

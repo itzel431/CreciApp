@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const MomentsScreen = () => {
+const HealthScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Pantalla de Momentos</Text>
-      {/* Aquí puedes agregar el contenido o la funcionalidad relacionada con momentos */}
+      <Text style={styles.title}>Pantalla de Salud</Text>
+      {/* Aquí puedes agregar contenido relacionado con la salud */}
     </View>
   );
 };
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFF3F8',
+    backgroundColor: '#F8E1F4',
   },
   title: {
     fontSize: 24,
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MomentsScreen;
+export default HealthScreen;
