@@ -1,14 +1,12 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Si usas navegación
 
-const HomeScreen = () => {
-  const navigation = useNavigation();
-
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Bienvenida a Creci</Text>
       <Text style={styles.subHeader}>Elige una opción</Text>
+
       <Button
         title="Crecimiento"
         onPress={() => navigation.navigate('GrowthScreen')}
