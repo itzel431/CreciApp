@@ -7,7 +7,7 @@ const HomeScreen = ({ navigation }) => {
       <Image source={require('../assets/logo.png')} style={styles.logo} />
       <Button
         title="Comenzar"
-        onPress={() => navigation.navigate('Growth')}  // Cambia 'Growth' por la pantalla que quieras abrir
+        onPress={() => navigation.navigate('Growth')}
       />
     </View>
   );
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#f0c0f0', // Rosa de fondo
   },
   logo: {
     width: 200,

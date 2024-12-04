@@ -1,60 +1,68 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
 
 const GrowthScreen = () => {
-  const [growth, setGrowth] = useState('');
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
   const [records, setRecords] = useState([]);
 
   const handleAddRecord = () => {
-    if (growth) {
-      setRecords([...records, { id: Date.now(), growth }]);
-      setGrowth('');
-    }
+    setRecords([...records, { weight, height, date: new Date().toLocaleString() }]);
+    setWeight('');
+    setHeight('');
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Registro de Crecimiento</Text>
       <TextInput
         style={styles.input}
-        value={growth}
-        onChangeText={setGrowth}
-        placeholder="Introduce el dato de crecimiento"
+        placeholder="Peso (kg)"
+        keyboardType="numeric"
+        value={weight}
+        onChangeText={setWeight}
       />
-      <Button title="Agregar" onPress={handleAddRecord} />
-      <View style={styles.records}>
-        {records.map((record) => (
-          <Text key={record.id}>{record.growth}</Text>
-        ))}
-      </View>
-    </View>
+      <TextInput
+        style={styles.input}
+        placeholder="Altura (cm)"
+        keyboardType="numeric"
+        value={height}
+        onChangeText={setHeight}
+      />
+      <Button title="Agregar Registro" onPress={handleAddRecord} />
+      {records.map((record, index) => (
+        <View key={index} style={styles.record}>
+          <Text>{`Fecha: ${record.date}`}</Text>
+          <Text>{`Peso: ${record.weight} kg`}</Text>
+          <Text>{`Altura: ${record.height} cm`}</Text>
+        </View>
+      ))}
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
+    padding: 20,
   },
   title: {
     fontSize: 24,
-    marginBottom: 16,
+    marginBottom: 20,
+    textAlign: 'center',
   },
   input: {
-    width: '80%',
-    padding: 10,
-    borderWidth: 1,
+    height: 40,
     borderColor: '#ccc',
-    marginBottom: 16,
+    borderWidth: 1,
+    marginBottom: 20,
+    paddingLeft: 10,
   },
-  records: {
-    marginTop: 20,
-    width: '80%',
-    borderTopWidth: 1,
-    borderTopColor: '#ccc',
-    paddingTop: 10,
+  record: {
+    backgroundColor: '#f4f4f4',
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 5,
   },
 });
 

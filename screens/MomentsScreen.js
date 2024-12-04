@@ -1,60 +1,51 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
+import { View, TextInput, Button, Text, StyleSheet, ScrollView } from 'react-native';
 
 const MomentsScreen = () => {
-  const [note, setNote] = useState('');
-  const [notes, setNotes] = useState([]);
+  const [moment, setMoment] = useState('');
+  const [entries, setEntries] = useState([]);
 
-  const handleAddNote = () => {
-    if (note) {
-      setNotes([...notes, { id: Date.now(), note }]);
-      setNote('');
-    }
+  const handleAddEntry = () => {
+    setEntries([...entries, { moment, date: new Date().toLocaleString() }]);
+    setMoment('');
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Bloc de Notas</Text>
+    <ScrollView style={styles.container}>
       <TextInput
         style={styles.input}
-        value={note}
-        onChangeText={setNote}
-        placeholder="Escribe un momento"
+        placeholder="Escribe un momento..."
+        value={moment}
+        onChangeText={setMoment}
       />
-      <Button title="Guardar" onPress={handleAddNote} />
-      <View style={styles.notes}>
-        {notes.map((noteItem) => (
-          <Text key={noteItem.id}>{noteItem.note}</Text>
-        ))}
-      </View>
-    </View>
+      <Button title="Agregar Momento" onPress={handleAddEntry} />
+      {entries.map((entry, index) => (
+        <View key={index} style={styles.entry}>
+          <Text>{`Fecha: ${entry.date}`}</Text>
+          <Text>{`Momento: ${entry.moment}`}</Text>
+        </View>
+      ))}
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 16,
+    padding: 20,
   },
   input: {
-    width: '80%',
-    padding: 10,
-    borderWidth: 1,
+    height: 40,
     borderColor: '#ccc',
-    marginBottom: 16,
+    borderWidth: 1,
+    marginBottom: 20,
+    paddingLeft: 10,
   },
-  notes: {
-    marginTop: 20,
-    width: '80%',
-    borderTopWidth: 1,
-    borderTopColor: '#ccc',
-    paddingTop: 10,
+  entry: {
+    backgroundColor: '#f4f4f4',
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 5,
   },
 });
 
