@@ -1,10 +1,10 @@
-import 'react-native-gesture-handler';  // Debe ser la primera importación
+import 'react-native-gesture-handler';  // Esto debe estar primero
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet, Image } from 'react-native';
 
-// Pantallas de tu aplicación
+// Pantallas de la aplicación
 import HomeScreen from './screens/HomeScreen';
 import GrowthScreen from './screens/GrowthScreen';
 import MomentsScreen from './screens/MomentsScreen';
@@ -24,3 +24,4 @@ export default function App() {
     </NavigationContainer>
   );
 }
+

@@ -4,14 +4,10 @@ import { View, Text, Button, StyleSheet, Image } from 'react-native';
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Image 
-        source={require('./assets/logo.png')}  // Cambia esto al logo que tienes en tu proyecto
-        style={styles.logo}
-      />
-      <Text style={styles.slogan}>Acompañándote en el arte de ser mamá</Text>
+      <Image source={require('../assets/logo.png')} style={styles.logo} />
       <Button
         title="Comenzar"
-        onPress={() => navigation.navigate('Growth')}
+        onPress={() => navigation.navigate('Growth')}  // Cambia 'Growth' por la pantalla que quieras abrir
       />
     </View>
   );
@@ -22,18 +18,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F0C1D1',  // Color de fondo
+    backgroundColor: '#fff',
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 200,
+    height: 200,
     marginBottom: 20,
-  },
-  slogan: {
-    fontSize: 18,
-    marginBottom: 20,
-    fontWeight: 'bold',
-    color: '#8A2BE2',  // Color del texto
   },
 });
 
