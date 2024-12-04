@@ -6,6 +6,7 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.header}>Bienvenida a Creci</Text>
       <Text style={styles.subHeader}>Elige una opción</Text>
+
       <Button
         title="Crecimiento"
         onPress={() => navigation.navigate('GrowthScreen')}
@@ -17,6 +18,10 @@ const HomeScreen = ({ navigation }) => {
       <Button
         title="Lactancia"
         onPress={() => navigation.navigate('LactationScreen')}
+      />
+      <Button
+        title="Momentos"
+        onPress={() => navigation.navigate('MomentsScreen')}
       />
     </View>
   );
