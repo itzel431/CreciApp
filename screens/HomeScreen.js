@@ -1,27 +1,18 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Image } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Bienvenida a Creci</Text>
-      <Text style={styles.subHeader}>Elige una opción</Text>
-
-      <Button
-        title="Crecimiento"
-        onPress={() => navigation.navigate('GrowthScreen')}
+      <Image 
+        source={require('../assets/logo.png')} // Asegúrate de tener el logo en la carpeta 'assets'
+        style={styles.logo} 
       />
+      <Text style={styles.slogan}>Acompañándote en el arte de ser mamá</Text>
       <Button
-        title="Diario"
-        onPress={() => navigation.navigate('DiaryScreen')}
-      />
-      <Button
-        title="Lactancia"
-        onPress={() => navigation.navigate('LactationScreen')}
-      />
-      <Button
-        title="Momentos"
-        onPress={() => navigation.navigate('MomentsScreen')}
+        title="Comenzar"
+        onPress={() => navigation.navigate('Growth')} // Navegar a GrowthScreen
+        color="#FF69B4"
       />
     </View>
   );
@@ -32,18 +23,21 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F1C6D3',
     padding: 20,
-    backgroundColor: '#F9F9F9',
   },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  logo: {
+    width: 200,
+    height: 200,
     marginBottom: 20,
   },
-  subHeader: {
-    fontSize: 16,
-    marginBottom: 40,
-  },
+  slogan: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#333',
+  }
 });
 
 export default HomeScreen;

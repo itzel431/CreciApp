@@ -1,24 +1,25 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native'; // Navegación
-import { createStackNavigator } from '@react-navigation/stack'; // Navegación de pila (Stack)
-
-import HomeScreen from './screens/HomeScreen'; // Importa las pantallas
+import React, { useState } from 'react';
+import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
 import GrowthScreen from './screens/GrowthScreen';
-import DiaryScreen from './screens/DiaryScreen';
-import LactationScreen from './screens/LactationScreen';
-import MomentsScreen from './screens/MomentsScreen';
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="HomeScreen">
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="GrowthScreen" component={GrowthScreen} />
-        <Stack.Screen name="DiaryScreen" component={DiaryScreen} />
-        <Stack.Screen name="LactationScreen" component={LactationScreen} />
-        <Stack.Screen name="MomentsScreen" component={MomentsScreen} />
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Growth" 
+          component={GrowthScreen} 
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
